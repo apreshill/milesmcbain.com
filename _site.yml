@@ -3,6 +3,7 @@ title: "Before I Sleep"
 description: |
   Before I Sleep
 output_dir: "_site"
+theme: turtles.css
 navbar:
   logo:
     image: images/i_like_turtles_bis.png
@@ -22,7 +23,7 @@ navbar:
       href: index.xml
 output:
   distill::distill_article:
-    css: mmstyle.css
+    #css: mmstyle.css
     includes:
       in_header: utterances.html
 base_url: https://milesmcbain.com
