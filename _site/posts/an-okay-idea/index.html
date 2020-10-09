@@ -18,6 +18,72 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #545454; font-weight: bold; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #a1024a; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #008000; } /* Char */
+code span.cn { color: #d91e18; } /* Constant */
+code span.co { color: #545454; } /* Comment */
+code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #aa5d00; } /* DataType */
+code span.dv { color: #a1024a; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #a1024a; } /* Float */
+code span.fu { color: #4254a7; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #545454; font-weight: bold; } /* Information */
+code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
+code span.op { color: #696969; } /* Operator */
+code span.ot { color: #007faa; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #008000; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #008000; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #008000; } /* VerbatimString */
+code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: Project as an R package: An okay idea</title>
 
@@ -65,9 +131,10 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["corrugated-cardboard-3853506_1280.jpg","project_as_an_r_package_files/bowser-1.9.3/bowser.min.js","project_as_an_r_package_files/distill-2.2.21/template.v2.js","project_as_an_r_package_files/header-attrs-2.3/header-attrs.js","project_as_an_r_package_files/jquery-1.11.3/jquery.min.js","project_as_an_r_package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["corrugated-cardboard-3853506_1280.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
 
 <script type="application/javascript">
 
@@ -127,7 +194,7 @@
 
 .distill-site-nav {
   color: rgba(255, 255, 255, 0.8);
-  background-color: #455a64;
+  background-color: #0F2E3D;
   font-size: 15px;
   font-weight: 300;
 }
@@ -190,6 +257,7 @@
 
 .distill-site-header .title {
   font-size: 18px;
+  min-width: 150px;
 }
 
 .distill-site-header .logo {
@@ -331,7 +399,7 @@
 
 
 @media screen and (max-width: 768px) {
-  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
   .distill-site-header.responsive a.nav-toggle {
     position: absolute;
     right: 0;
@@ -405,6 +473,267 @@ d-title {
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createIndex() {
+  var options = {
+    keys: [
+      "title",
+      "categories",
+      "description",
+      "contents"
+    ]
+  };
+  return new window.Fuse([],options);
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = { keys: ["title", "description", "contents"] };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+            keys: [
+              { name: 'title', weight: 20 },
+              { name: 'categories', weight: 15 },
+              { name: 'description', weight: 10 },
+              { name: 'contents', weight: 5 },
+            ],
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+            .filter(function(item) { return !!item.description; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description}
+                </div>
+                <div class="search-item-preview">
+                  <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
 <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -430,6 +759,18 @@ body {
   font-size: 15px;
 }
 
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
 .authors-affiliations .orcid-id {
   width: 16px;
   height:16px;
@@ -447,12 +788,12 @@ d-title .dt-tags {
 .dt-tags .dt-tag {
   text-decoration: none;
   display: inline-block;
-  color: rgba(0,0,0,0.67);
+  color: rgba(0,0,0,0.6);
   padding: 0em 0.4em;
   margin-right: 0.5em;
   margin-bottom: 0.4em;
   font-size: 70%;
-  border: 1px solid rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 3px;
   text-transform: uppercase;
   font-weight: 500;
@@ -502,6 +843,7 @@ d-article table.gt_table th {
 }
 
 d-article {
+  padding-top: 2.5rem;
   padding-bottom: 30px;
 }
 
@@ -513,137 +855,48 @@ d-article>p>img {
   width: 100%;
 }
 
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
 d-article iframe {
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 2.0em;
   width: 100%;
 }
 
-figure img.external {
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  padding: 18px;
-  box-sizing: border-box;
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
-/* CSS for d-contents */
-
-.d-contents {
-  color: rgba(0,0,0,0.8);
-  font-size: 0.9em;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: hidden;
 }
 
-@media(max-width: 1000px) {
-  .d-contents {
-    grid-column: text;
-    width: 100%;
-    justify-self: start;
-    align-self: start;
-    padding-bottom: 0.5em;
-    margin-bottom: 1em;
-    padding-left: 0.25em;
-  }
+d-article div.sourceCode {
+  background-color: white;
 }
 
-@media(min-width: 1180px) {
-  .d-contents {
-    height: 0;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    justify-self: center;
-    padding-right: 3em;
-    padding-left: 2em;
-  }
-}
-
-.d-contents nav h3 {
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.6);
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0.5em;
-}
-
-.d-contents nav a {
-  color: rgba(0, 0, 0, 0.8);
-  border-bottom: none;
-  text-decoration: none
-}
-
-.d-contents li {
-  list-style-type: none
-}
-
-.d-contents nav > ul {
-  padding-left: 0;
-}
-
-.d-contents ul {
-  padding-left: 1em
-}
-
-.d-contents nav ul li {
-  margin-bottom: 0.15em;
-}
-
-.d-contents nav a:hover {
-  text-decoration: underline solid rgba(0, 0, 0, 0.6)
-}
-
-.d-contents nav ul {
-  margin-top: 0;
-  margin-bottom: 0.25em;
-}
-
-.d-contents nav>div {
-  display: block;
-  outline: none;
-  margin-bottom: 0.5em
-}
-
-.d-contents nav>div>a {
-  font-size: 13px;
-  font-weight: 600
-}
-
-.d-contents nav>div>a {
-  font-size: 13px;
-  font-weight: 600
-}
-
-.d-contents nav>div>a:hover,
-.d-contents nav>ul>li>a:hover {
-  text-decoration: none
-}
-
-.d-article-with-toc {
-  border-top: none;
-  padding-top: 0;
-}
-
-/* Tweak code blocks (note that this CSS is repeated above in an injection
-   into the d-code shadow dom) */
-
-d-code {
-  overflow-x: auto !important;
-}
-
-pre.d-code code.d-code {
+d-article div.sourceCode pre {
   padding-left: 10px;
   font-size: 12px;
   border-left: 2px solid rgba(0,0,0,0.1);
 }
 
-pre.text-output {
-
+d-article pre {
   font-size: 12px;
   color: black;
   background: none;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  margin-top: 0;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -661,20 +914,123 @@ pre.text-output {
   hyphens: none;
 }
 
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
 @media(min-width: 768px) {
 
-d-code {
-  overflow-x: visible !important;
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
 }
 
-pre.d-code code.d-code  {
-    padding-left: 18px;
-    font-size: 14px;
-}
-pre.text-output {
+d-article div.sourceCode pre {
+  padding-left: 18px;
   font-size: 14px;
 }
+
+d-article pre {
+  font-size: 14px;
 }
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
 
 /* Figure */
 
@@ -797,6 +1153,91 @@ d-appendix .citation-appendix,
   word-wrap: break-word;
 }
 
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
 
 /* Social footer */
 
@@ -998,6 +1439,13 @@ function is_downlevel_browser() {
 // show body when load is complete
 function on_load_complete() {
 
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
   // set body to visible
   document.body.style.visibility = 'visible';
 
@@ -1078,27 +1526,6 @@ function init_distill() {
   // show d-appendix if we have appendix content
   $("d-appendix").css('display', appendix ? 'grid' : 'none');
 
-  // replace code blocks with d-code
-  $('pre>code').each(function(i, val) {
-    var code = $(this);
-    var pre = code.parent();
-    var clz = "";
-    var language = pre.attr('class');
-    if (language) {
-      // map unknown languages to "clike" (without this they just dissapear)
-      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
-                               "javascript", "js", "julia", "lua", "markdown",
-                               "markup", "mathml", "python", "svg", "xml"]) == -1)
-        language = "clike";
-      language = ' language="' + language + '"';
-      var dt_code = $('<d-code block' + language + clz + '></d-code>');
-      dt_code.text(code.text());
-      pre.replaceWith(dt_code);
-    } else {
-      code.addClass('text-output').unwrap().changeElementType('pre');
-    }
-  });
-
   // localize layout chunks to just output
   $('.layout-chunk').each(function(i, val) {
 
@@ -1106,7 +1533,7 @@ function init_distill() {
     var layout = $(this).attr('data-layout');
 
     // apply layout to markdown level block elements
-    var elements = $(this).children().not('d-code, pre.text-output, script');
+    var elements = $(this).children().not('div.sourceCode, pre, script');
     elements.each(function(i, el) {
       var layout_div = $('<div class="' + layout + '"></div>');
       if (layout_div.hasClass('shaded')) {
@@ -1123,6 +1550,13 @@ function init_distill() {
     $(this).children().unwrap();
   });
 
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
   // load distill framework
   load_distill_framework();
 
@@ -1138,9 +1572,8 @@ function init_distill() {
     if (!have_authors)
       $('d-byline').addClass('hidden');
 
-    // table of contents
-    if (have_authors) // adjust border if we are in authors
-      $('.d-contents').parent().addClass('d-article-with-toc');
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
 
     // strip links that point to #
     $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
@@ -1208,14 +1641,9 @@ function init_distill() {
       grid.children('h3:contains("Affiliations")').text('Affiliation');
     }
 
-    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
-    $('d-code').each(function(i, val) {
-      var style = document.createElement('style');
-      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
-                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
-      if (this.shadowRoot)
-        this.shadowRoot.appendChild(style);
-    });
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
 
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
@@ -1379,8 +1807,335 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+.d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+@import url('https://fonts.googleapis.com/css2?family=Cardo');
+@import url('https://fonts.googleapis.com/css2?family=Alata');
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.075em; /* 1.06rem */
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    'Alata', sans-serif;
+  --mono-font:       monospace;
+  --body-font:       'Cardo', serif;
+  --navbar-font:     'Alata', sans-serif;
+}
+
+/*-- ARTICLE METADATA --*/
+.d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       1.075em;
+  --text-color:      rgb(0, 0, 0);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       #000;
+  --text-size:        15px;
+  --hover-color:      #ff00ff;
+  --bkgd-color:       #fff;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+
+.categories li > a:hover {
+    color: #00ff00;
+    border-bottom: 1px #00ff00;
+}
+
+p a:hover  {
+    color: #00ff00;
+}
+
+/* Change appearance of headers */
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+}
+
+/* Use specific font in the body of the text */
+html, body, p {
+    font-weight: 200;
+    line-height: 1.3; 
+    font-style: normal;
+}
+
+li::marker {
+    font-weight: 700;
+    font-size: 1.125em;
+}</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .post-preview h3,
+.posts-list .description h2,
+.posts-sidebar h3 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code,
+d-article p code {
+	font-family: var(--mono-font), var(--mono-default);
+}
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+/* only text inside of <p> tags */
+d-article > p {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+	font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+	font-size: var(--aside-size, 12px);
+	color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+	font-size: var(--fig-cap-size, 13px);
+	color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+	font-size: var(--heading-size, 0.6rem);
+	color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+	font-size: var(--body-size, 0.8rem);
+	color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+	color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+	font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+	font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+	color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+	color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+	color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+
+.distill-site-header .title {
+	font-size: var(--title-size, 18px);
+	font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header {
+	font-size: var(--text-size, 15px);
+	color: var(--text-color, rgba(255, 255, 255, 0.8));
+	background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-header a:hover {
+	color: var(--hover-color, white);
+}
+
+.distill-site-footer {
+	font-size: var(--text-size, 15px);
+	color: var(--text-color, rgba(255, 255, 255, 0.8));
+	background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+	color: var(--hover-color, white);
+}</style>
 <!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.4/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -1413,78 +2168,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 
-<style type="text/css">
-/* Import fonts from Google's API */
-@import url('https://fonts.googleapis.com/css2?family=Cardo');
-@import url('https://fonts.googleapis.com/css2?family=Alata');
-
-
-
-.distill-site-nav {
-    font-family: 'Alata', sans-serif;
-    color: #000;
-    background-color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.distill-site-header {
-    font-family: 'Alata', sans-serif;
-    color: #000;
-    background-color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.distill-site-nav a:hover {
-    color: #ff00ff;
-}
-
-.categories li > a:hover {
-    color: #00ff00;
-    border-bottom: 1px #00ff00;
-}
-
-p a:hover  {
-    color: #00ff00;
-}
-
-/* Change appearance of headers */
-h1, h2, h3, h4, h5 {
-    font-family: 'Alata', sans-serif;
-    font-weight: 700;
-}
-
-/* Use specific font in the body of the text */
-html, body, p {
-    
-    font-family: 'Cardo', serif;
-    font-weight: 200;
-    line-height: 1.3; 
-    font-size: 1.075em;
-    font-style: normal;
-    
-}
-
-.posts-list .description p {
-    font-family: 'Cardo', serif !important;
-    color: gray !important;
-}
-
-.posts-list .description h2 {
-    font-family: 'Alata', sans-serif !important;
-}
-
-d-appendix {
-    color: rgb(0, 0, 0) !important;
-}
-
-li::marker {
-    font-weight: 700;
-    font-size: 1.125em;
-}
-
-</style>
 <!--/radix_placeholder_site_in_header-->
 
 
@@ -1495,7 +2178,7 @@ li::marker {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Project as an R package: An okay idea","description":"The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-07-24T00:00:00.000+10:00","citationText":"McBain, 2020"}
+{"title":"Project as an R package: An okay idea","description":"The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-07-24T00:00:00.000-04:00","citationText":"McBain, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1507,6 +2190,7 @@ li::marker {
 <img src="../../images/i_like_turtles_bis.png" alt="Logo"/>
 </a>
 <a href="../../index.html" class="title">Before I Sleep</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
 <a href="../../index.html">Home</a>
@@ -1527,7 +2211,14 @@ li::marker {
 
 <div class="d-title">
 <h1>Project as an R package: An okay idea</h1>
-<p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</p>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:workflow" class="dt-tag">workflow</a>
+  <a href="../../index.html#category:data_science" class="dt-tag">data science</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend</p></p>
 </div>
 
 <div class="d-byline">
@@ -1585,10 +2276,10 @@ pointless artifacts
 <li>The <code>Authors</code> of the project are already tracked and displayed on GitHub</li>
 <li><code>Title</code> and <code>Description</code> are made redundant by your README</li>
 <li><code>URL</code> and <code>BugReports</code> are useless because that’s the GitHub repo you work out of.</li>
-<li><code>Version</code> can be a git tag (GitHub release) <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li><code>Version</code> can be a git tag (GitHub release) <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
 </ul>
-<p><code>Imports</code>, <code>Depends</code>, and <code>Suggests</code> describe your dependencies. Unfortunately they do not describe your dependencies in sufficient detail such that any guarantee can be made about your project package being able to be run after installation. Since your package isn’t on CRAN it is not being reverse dependency checked, and breaking changes in your dependencies will flow to you freely. And this can happen at any moment - Worked fine after install yesterday, broken today.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-<p>To be able to make a guarantee that your project will run with working dependencies at some point in the future you need to capture a known-good list of versions of all your dependencies<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. To do this you use a lockfile or a dockerfile or both. Let’s say you use a lockfile created with <code>{renv}</code>. You now have a second place in your project repository that lists R package dependencies and version numbers.</p>
+<p><code>Imports</code>, <code>Depends</code>, and <code>Suggests</code> describe your dependencies. Unfortunately they do not describe your dependencies in sufficient detail such that any guarantee can be made about your project package being able to be run after installation. Since your package isn’t on CRAN it is not being reverse dependency checked, and breaking changes in your dependencies will flow to you freely. And this can happen at any moment - Worked fine after install yesterday, broken today.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>To be able to make a guarantee that your project will run with working dependencies at some point in the future you need to capture a known-good list of versions of all your dependencies<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. To do this you use a lockfile or a dockerfile or both. Let’s say you use a lockfile created with <code>{renv}</code>. You now have a second place in your project repository that lists R package dependencies and version numbers.</p>
 <p>What’s worse is that these two statements of version dependence can easily become out of sync. This happens since lockfiles are typically generated by an automated snapshot process that examines your environment, while your DESCRIPTION is updated manually. Lockfiles obsolete dependencies in DESCRIPTION.</p>
 <h2 id="pointless-artifacts">Pointless artifacts</h2>
 <p>Pointless artifacts are things that must exist for your project to be a valid package by CRAN’s policies but serve no purpose for a project that isn’t going to be publicly released on CRAN.</p>
@@ -1599,111 +2290,108 @@ pointless artifacts
 <p>Every function call made in an R package that is not part of the base language needs to be tied to an appropriate namespace. The community has settled on the noisiest but most flexible approach to do this as standard, using the <code>::</code> operator.</p>
 <p>I dug up a real snippet of code from a recent project to demonstrate the difference.</p>
 <p>Here’s the standard for project as a package:</p>
-<pre class="r"><code>
-  plot_data &lt;- daily_work %&gt;%
-    dplyr::filter(IncidentTypeCategory %in% incident_type_categories) %&gt;%
-    # determine ordering for category factor
-    dplyr::group_by(IncidentTypeCategory) %&gt;%
-    dplyr::mutate(total_hours = sum(hours)) %&gt;%
-    dplyr::ungroup() %&gt;%
-    dplyr::mutate(
-      month = tsibble::yearmonth(floor_date(date, &quot;month&quot;)),
-      category = forcats::fct_reorder(
-        IncidentTypeCategory,
-        total_hours,
-        .desc = TRUE
-      )
-    ) %&gt;%
-    dplyr::group_by(month, category) %&gt;%
-    dplyr::summarise(hours = sum(hours)) %&gt;%
-    dplyr::ungroup() %&gt;%
-    tsibble::as_tsibble(index = month, key = &quot;category&quot;) %&gt;%
-    tsibble::fill_gaps(hours = 0)
-
-  ggplot2::ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
-    ggplot2::geom_path() +
-    ggplot2::scale_x_date() +
-    ggplot2::expand_limits(y = 0) +
-    ggplot2::facet_wrap(
-      ~category,
-      ncol = 1,
-      scales = &quot;free_y&quot;
-    ) +
-    ggplot2::theme_minimal() +
-    ggplot2::labs(
-      title = &quot;QFES monthly vehicle hours&quot;,
-      y = &quot;vehicle hours&quot;
-    ) +
-    ggplot2::geom_smooth(se = FALSE, linetype = &quot;dashed&quot;)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>  plot_data &lt;-<span class="st"> </span>daily_work <span class="op">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">filter</span>(IncidentTypeCategory <span class="op">%in%</span><span class="st"> </span>incident_type_categories) <span class="op">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="st">    </span><span class="co"># determine ordering for category factor</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(IncidentTypeCategory) <span class="op">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">total_hours =</span> <span class="kw">sum</span>(hours)) <span class="op">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
+<span id="cb1-8"><a href="#cb1-8"></a>      <span class="dt">month =</span> tsibble<span class="op">::</span><span class="kw">yearmonth</span>(<span class="kw">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)),</span>
+<span id="cb1-9"><a href="#cb1-9"></a>      <span class="dt">category =</span> forcats<span class="op">::</span><span class="kw">fct_reorder</span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>        IncidentTypeCategory,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>        total_hours,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>        <span class="dt">.desc =</span> <span class="ot">TRUE</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>      )</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(month, category) <span class="op">%&gt;%</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">hours =</span> <span class="kw">sum</span>(hours)) <span class="op">%&gt;%</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="st">    </span>dplyr<span class="op">::</span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="st">    </span>tsibble<span class="op">::</span><span class="kw">as_tsibble</span>(<span class="dt">index =</span> month, <span class="dt">key =</span> <span class="st">&quot;category&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="st">    </span>tsibble<span class="op">::</span><span class="kw">fill_gaps</span>(<span class="dt">hours =</span> <span class="dv">0</span>)</span>
+<span id="cb1-20"><a href="#cb1-20"></a></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  ggplot2<span class="op">::</span><span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> hours, <span class="dt">colour =</span> category)) <span class="op">+</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">geom_path</span>() <span class="op">+</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">scale_x_date</span>() <span class="op">+</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">expand_limits</span>(<span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">facet_wrap</span>(</span>
+<span id="cb1-26"><a href="#cb1-26"></a>      <span class="op">~</span>category,</span>
+<span id="cb1-27"><a href="#cb1-27"></a>      <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb1-28"><a href="#cb1-28"></a>      <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>    ) <span class="op">+</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(</span>
+<span id="cb1-32"><a href="#cb1-32"></a>      <span class="dt">title =</span> <span class="st">&quot;QFES monthly vehicle hours&quot;</span>,</span>
+<span id="cb1-33"><a href="#cb1-33"></a>      <span class="dt">y =</span> <span class="st">&quot;vehicle hours&quot;</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>    ) <span class="op">+</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="st">    </span>ggplot2<span class="op">::</span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p>and here’s what my team actually had:</p>
-<pre class="r"><code>
-  plot_data &lt;- daily_work %&gt;%
-    filter(IncidentTypeCategory %in% incident_type_categories) %&gt;%
-    # determine ordering for category factor
-    group_by(IncidentTypeCategory) %&gt;%
-    mutate(total_hours = sum(hours)) %&gt;%
-    ungroup() %&gt;%
-    mutate(
-      month = yearmonth(floor_date(date, &quot;month&quot;)),
-      category = fct_reorder(
-        IncidentTypeCategory,
-        total_hours,
-        .desc = TRUE
-      )
-    ) %&gt;%
-    group_by(month, category) %&gt;%
-    summarise(hours = sum(hours)) %&gt;%
-    ungroup() %&gt;%
-    as_tsibble(index = month, key = &quot;category&quot;) %&gt;%
-    tsibble::fill_gaps(hours = 0)
-
-  ggplot(plot_data, aes(x = month, y = hours, colour = category)) +
-    geom_path() +
-    scale_x_date() +
-    expand_limits(y = 0) +
-    facet_wrap(
-      ~category,
-      ncol = 1,
-      scales = &quot;free_y&quot;
-    ) +
-    theme_minimal() +
-    labs(
-      title = &quot;QFES monthly vehicle hours&quot;,
-      y = &quot;vehicle hours&quot;
-    ) +
-    geom_smooth(se = FALSE, linetype = &quot;dashed&quot;)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>  plot_data &lt;-<span class="st"> </span>daily_work <span class="op">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">    </span><span class="kw">filter</span>(IncidentTypeCategory <span class="op">%in%</span><span class="st"> </span>incident_type_categories) <span class="op">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">    </span><span class="co"># determine ordering for category factor</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">    </span><span class="kw">group_by</span>(IncidentTypeCategory) <span class="op">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">total_hours =</span> <span class="kw">sum</span>(hours)) <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb2-8"><a href="#cb2-8"></a>      <span class="dt">month =</span> <span class="kw">yearmonth</span>(<span class="kw">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>      <span class="dt">category =</span> <span class="kw">fct_reorder</span>(</span>
+<span id="cb2-10"><a href="#cb2-10"></a>        IncidentTypeCategory,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>        total_hours,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>        <span class="dt">.desc =</span> <span class="ot">TRUE</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>      )</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="st">    </span><span class="kw">group_by</span>(month, category) <span class="op">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">hours =</span> <span class="kw">sum</span>(hours)) <span class="op">%&gt;%</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="st">    </span><span class="kw">as_tsibble</span>(<span class="dt">index =</span> month, <span class="dt">key =</span> <span class="st">&quot;category&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="st">    </span>tsibble<span class="op">::</span><span class="kw">fill_gaps</span>(<span class="dt">hours =</span> <span class="dv">0</span>)</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="kw">ggplot</span>(plot_data, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> hours, <span class="dt">colour =</span> category)) <span class="op">+</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="st">    </span><span class="kw">geom_path</span>() <span class="op">+</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="st">    </span><span class="kw">scale_x_date</span>() <span class="op">+</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="st">    </span><span class="kw">expand_limits</span>(<span class="dt">y =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="st">    </span><span class="kw">facet_wrap</span>(</span>
+<span id="cb2-26"><a href="#cb2-26"></a>      <span class="op">~</span>category,</span>
+<span id="cb2-27"><a href="#cb2-27"></a>      <span class="dt">ncol =</span> <span class="dv">1</span>,</span>
+<span id="cb2-28"><a href="#cb2-28"></a>      <span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>    ) <span class="op">+</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="st">    </span><span class="kw">labs</span>(</span>
+<span id="cb2-32"><a href="#cb2-32"></a>      <span class="dt">title =</span> <span class="st">&quot;QFES monthly vehicle hours&quot;</span>,</span>
+<span id="cb2-33"><a href="#cb2-33"></a>      <span class="dt">y =</span> <span class="st">&quot;vehicle hours&quot;</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>    ) <span class="op">+</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p>Note how we had <code>tsibble::fill_gaps</code> even in the second example even though we didn’t need to. This is sometimes done as a kindness for the reader when using lesser known functions.</p>
-<p>I find reading from a <code>%&gt;%</code> down into a namespace prefix particularly jarring. I can visually filter the prefixes if I concentrate and regain some of the nice natural language style <code>dplyr</code> flow, but I feel my eyes constantly being tugged to the left as I move down the lines. The procedure that reads a line of text starting from the left most character seems powerfully ingrained in my mind.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>I find reading from a <code>%&gt;%</code> down into a namespace prefix particularly jarring. I can visually filter the prefixes if I concentrate and regain some of the nice natural language style <code>dplyr</code> flow, but I feel my eyes constantly being tugged to the left as I move down the lines. The procedure that reads a line of text starting from the left most character seems powerfully ingrained in my mind.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>Surprisingly you must also use <code>::</code> to prefix functions from core namespaces that are loaded automatically by R. So that means <code>stats::</code>, <code>utils::</code>, and <code>tools::</code> etc with accompanying declarations in the <code>DESCRIPTION</code> file. A lot of commonly used functions are held in the core packages and I am regularly tripped up in package development trying to use functions without namespace prefixes that I thought were in the base language.</p>
-<p>Another bit of noise gets introduced if you want to use global constants - that is data objects that are not functions. These are forbidden by default, but have valid use cases. For example I might define a global constant like <code>EPSG_WEB_MERCATOR &lt;- 3857</code> so later in my code I can do <code>st_transform(sf_object, EPSG_WEB_MERCATOR)</code> instead of having the magic number <code>3857</code> appear from the ether.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p>Another bit of noise gets introduced if you want to use global constants - that is data objects that are not functions. These are forbidden by default, but have valid use cases. For example I might define a global constant like <code>EPSG_WEB_MERCATOR &lt;- 3857</code> so later in my code I can do <code>st_transform(sf_object, EPSG_WEB_MERCATOR)</code> instead of having the magic number <code>3857</code> appear from the ether.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>To do this in a package project I must introduce this odd looking side-effect function into my code:</p>
-<pre class="r"><code>
-globalVariables(c(&quot;EPSG_WEB_MERCATOR&quot;), &quot;my_package&quot;)
-WEBMERCATOR_EPSG &lt;- 3857</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">globalVariables</span>(<span class="kw">c</span>(<span class="st">&quot;EPSG_WEB_MERCATOR&quot;</span>), <span class="st">&quot;my_package&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>WEBMERCATOR_EPSG &lt;-<span class="st"> </span><span class="dv">3857</span></span></code></pre></div>
 <h1 id="dissecting-the-killer-features">Dissecting the killer features</h1>
 <p>From what fans of the project as a package workflow have said to me, the two killer features are:</p>
 <ol type="1">
 <li>Having an easily installable artifact that will install its own dependencies</li>
 <li>Easy on-ramp to automated testing on GitHub continuous integration services.</li>
 </ol>
-<p>With respect to 1. I’ve already debunked the dependencies aspect - making your project a package is not a robust form of dependency management<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. On sharing, I’d argue <code>git clone https://github.com/my_org/my_project</code> is a pretty nice way to share a project, equivalent to <code>install_github("my_org/my_project")</code>.</p>
+<p>With respect to 1. I’ve already debunked the dependencies aspect - making your project a package is not a robust form of dependency management<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. On sharing, I’d argue <code>git clone https://github.com/my_org/my_project</code> is a pretty nice way to share a project, equivalent to <code>install_github("my_org/my_project")</code>.</p>
 <p>Thinking about 2: Automated testing is great, and the package ecosystem has a nicely paved flow consisting of just a couple of <code>{usethis}</code> calls. But your automated tests are run within RMD check which adds overhead and a whole basket of compliance requirements that are pointless.</p>
 <p>I think people are missing the fact the that there is nothing spooky about the way <code>{testthat}</code> works. There is a function called <code>testthat::test_dir</code> that runs a folder of <code>testthat</code> tests in an environment that is setup by <code>testthat.R</code> . You could change a couple of lines in the <a href="https://github.com/r-lib/actions/tree/master/examples">GitHub action for CMD check</a>, swapping <code>rcmdcheck::rcmdcheck</code> for <code>testthat::test_dir</code> and you have your automated testing without the tyranny of the CMD check and R package structure.</p>
 <h1 id="weighing-the-cons">Weighing the cons</h1>
 <p>Okay so here’s where I go full subjective and get to the heart of why project as a package upsets me.</p>
-<p>As data scientists we work in a field where there are very few objectively right outcomes. It doesn’t matter how we wrote our code, or how many unit tests it has, or even if our models converged<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.</p>
-<p>And the key word is <em>convincing</em>. It’s not possible to write unit tests that validate the choice of one methodology over another. There are far too many subjective elements. So our code then has the key function of documenting our methodology, and our chain of inferential reasoning so that it can be audited, and validated by peers<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
-<p>So the whole shebang hangs, not on the functional correctness of our code, but on its clarity. And this is why I will fiercely advocate for writing code to be read. I try to structure my projects to be navigated, and a navigable project must be a reflection of its domain. Every choice I make prioritises surfacing the links my chain of reasoning over cpu cycles, over memory consumption, and everything else <a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
+<p>As data scientists we work in a field where there are very few objectively right outcomes. It doesn’t matter how we wrote our code, or how many unit tests it has, or even if our models converged<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. What matters is that we have successfully constructed a convincing chain of inferential reasoning, lead by principled data analysis at every step, to a conclusion that is actionable somehow.</p>
+<p>And the key word is <em>convincing</em>. It’s not possible to write unit tests that validate the choice of one methodology over another. There are far too many subjective elements. So our code then has the key function of documenting our methodology, and our chain of inferential reasoning so that it can be audited, and validated by peers<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
+<p>So the whole shebang hangs, not on the functional correctness of our code, but on its clarity. And this is why I will fiercely advocate for writing code to be read. I try to structure my projects to be navigated, and a navigable project must be a reflection of its domain. Every choice I make prioritises surfacing the links my chain of reasoning over cpu cycles, over memory consumption, and everything else <a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.</p>
 <p>The overarching problem I see with conforming analysis to the package domain, is that it introduces artifacts not of the project domain and that makes the project harder to comprehend.</p>
 <p>People have said: “Yes but once you know how to make packages it actually makes things clearer”. I find this an inhumane response on a number of levels. It steepens the learning curve before collaborators can become contributors. This is cruel if there are less convoluted options that would suffice.</p>
 <p>My response to advocates of project as a package is: ==You’re wasting precious time making the wrong packages.==</p>
-<p>Instead of shoehorning your work into the package development domain, with all the loss of fidelity that entails, why aren’t you packaging tools that create the smooth <code>{devtools}</code>/<code>{usethis}</code> style experience for your own domain?<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>Instead of shoehorning your work into the package development domain, with all the loss of fidelity that entails, why aren’t you packaging tools that create the smooth <code>{devtools}</code>/<code>{usethis}</code> style experience for your own domain?<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <p>No really. Why. Aren’t. You. Doing. That?</p>
-<p>You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. Your domain, done in your style, under your rules.</p>
+<p>You can cherry pick everything you like from package development and leave anything painful, annoying, or frustrating behind<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>. Your domain, done in your style, under your rules.</p>
 <h1 id="conclusions-caveats-concessions">Conclusions, caveats, concessions</h1>
 <p>My aim here has been to provide some balance to a discussion that felt a bit one sided. I fully accept that I have but one vantage point and others will evaluate the tradeoffs project as package makes differently from theirs.</p>
 <p>For my peers slugging away in industry data science roles, my argument essentially boils down to:</p>
-<p>The two key benefits of the project as package workflow are prone to being overstated. For all the other things listed as ‘pros’, most can be realised under alternative workflows<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>. The loss of fidelity in terms of the mapping of the project to the domain is risky because it makes your methodology more difficult to verify.</p>
+<p>The two key benefits of the project as package workflow are prone to being overstated. For all the other things listed as ‘pros’, most can be realised under alternative workflows<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. The loss of fidelity in terms of the mapping of the project to the domain is risky because it makes your methodology more difficult to verify.</p>
 <p>I am more convinced of the R package approach for reproducible research objects. Although they may not be going to CRAN, they fully expect to be archived. In this case the DESCRIPTION file has more value. It also makes sense to adhere to a really common standard, since if the domain shifts over a very long period of time, it may actually aid comprehension of the work to be in a more general standard form.</p>
 <h1 id="where-to-next">Where to next</h1>
 <p>When I step back and look at what’s going on here I am <a href="https://www.gwern.net/Holy-wars">reminded of this very lucid article shared by Hadley Wickham</a> <a href="https://twitter.com/hadleywickham/status/1280340931657564160">on Twitter</a> recently. The article talks about the phenomenon of ‘bitrot’ and ‘bitcreep’ which are reciprocal software phenomena. In R, our collective tooling has seen significant <em>bitcreep</em> toward package development due to the amount and quality of developers who depend on these tools.</p>
@@ -1719,21 +2407,22 @@ WEBMERCATOR_EPSG &lt;- 3857</code></pre>
 <p>Nick Tierney and Dean Machiori for being a sounding board for some of my agruments.</p>
 <p>My team at QFES for being on board with putting clarity above all else, especially Anthony North.</p>
 <hr />
-<section class="footnotes">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>which you were probably doing anyway since it facilitates: <code>devtools::install_github("milesmcbain/slippymath@0.3.1)</code><a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Your own automated package checks may alert to the fact your package is already in a broken state if you are triggering them frequently enough<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>AND your dependencies dependencies dependencies…<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Speaking of <code>%&gt;%</code>, you’ll have noticed we don’t have to do <code>magrittr::%&gt;%</code> everywhere that is used. It is declared via <code>importFrom(magrittr,"%&gt;%")</code> in the package’s <code>NAMESPACE</code> file. <code>NAMESPACE</code> is arguably pointless artifact if the project as a package is never installed.<a href="#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Global <em>variables</em> are dangerous. Global <em>constants</em> are useful communication tools.<a href="#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>And if you don’t have proper dependency management, you are the dependency management!<a href="#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>Since misspecified models can converge to an answer that is not well founded.<a href="#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>With possible peers including our future selves in 3-6 months time.<a href="#fnref8" class="footnote-back">↩</a></p></li>
-<li id="fn9"><p>And I’m lucky enough to work with some people that share this view.<a href="#fnref9" class="footnote-back">↩</a></p></li>
-<li id="fn10"><p>There are many examples of R developers doing this. Some prominent examples to consider are: <a href="https://jdblischak.github.io/workflowr/index.html">{workflowr}</a>, <a href="https://github.com/benmarwick/rrtools">{rrpkg}</a>, <a href="https://www.vaccineimpact.org/orderly/articles/orderly.html">{orderly}</a>. I have made my own efforts public as discussed in my previous blog post. <a href="#fnref10" class="footnote-back">↩</a></p></li>
-<li id="fn11"><p>To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.<a href="#fnref11" class="footnote-back">↩</a></p></li>
-<li id="fn12"><p>If you like writing functions you owe it to yourself to give <code>{drake}</code> a look.<a href="#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>which you were probably doing anyway since it facilitates: <code>devtools::install_github("milesmcbain/slippymath@0.3.1)</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Your own automated package checks may alert to the fact your package is already in a broken state if you are triggering them frequently enough<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>AND your dependencies dependencies dependencies…<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Speaking of <code>%&gt;%</code>, you’ll have noticed we don’t have to do <code>magrittr::%&gt;%</code> everywhere that is used. It is declared via <code>importFrom(magrittr,"%&gt;%")</code> in the package’s <code>NAMESPACE</code> file. <code>NAMESPACE</code> is arguably pointless artifact if the project as a package is never installed.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Global <em>variables</em> are dangerous. Global <em>constants</em> are useful communication tools.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>And if you don’t have proper dependency management, you are the dependency management!<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Since misspecified models can converge to an answer that is not well founded.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>With possible peers including our future selves in 3-6 months time.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>And I’m lucky enough to work with some people that share this view.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>There are many examples of R developers doing this. Some prominent examples to consider are: <a href="https://jdblischak.github.io/workflowr/index.html">{workflowr}</a>, <a href="https://github.com/benmarwick/rrtools">{rrpkg}</a>, <a href="https://www.vaccineimpact.org/orderly/articles/orderly.html">{orderly}</a>. I have made my own efforts public as discussed in my previous blog post. <a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>To me, the freedom to iterate toward for-purpose tooling is a core ingredient of a humane work environment. Over time the snags and rough-edges of ill-suited tools wear me down like water torture, until I get pangs of almost-physical pain each time I hit them.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>If you like writing functions you owe it to yourself to give <code>{drake}</code> a look.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

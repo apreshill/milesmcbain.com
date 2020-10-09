@@ -18,6 +18,72 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #545454; font-weight: bold; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #a1024a; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #008000; } /* Char */
+code span.cn { color: #d91e18; } /* Constant */
+code span.co { color: #545454; } /* Comment */
+code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #aa5d00; } /* DataType */
+code span.dv { color: #a1024a; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #a1024a; } /* Float */
+code span.fu { color: #4254a7; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #545454; font-weight: bold; } /* Information */
+code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
+code span.op { color: #696969; } /* Operator */
+code span.ot { color: #007faa; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #008000; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #008000; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #008000; } /* VerbatimString */
+code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
 <title>Before I Sleep: The Roots of Quotation</title>
 
@@ -65,9 +131,10 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Quote---2-.jpg","the_roots_of_quotation_files/bowser-1.9.3/bowser.min.js","the_roots_of_quotation_files/distill-2.2.21/template.v2.js","the_roots_of_quotation_files/header-attrs-2.3/header-attrs.js","the_roots_of_quotation_files/jquery-1.11.3/jquery.min.js","the_roots_of_quotation_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Quote---2-.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
 
 <script type="application/javascript">
 
@@ -127,7 +194,7 @@
 
 .distill-site-nav {
   color: rgba(255, 255, 255, 0.8);
-  background-color: #455a64;
+  background-color: #0F2E3D;
   font-size: 15px;
   font-weight: 300;
 }
@@ -190,6 +257,7 @@
 
 .distill-site-header .title {
   font-size: 18px;
+  min-width: 150px;
 }
 
 .distill-site-header .logo {
@@ -331,7 +399,7 @@
 
 
 @media screen and (max-width: 768px) {
-  .distill-site-header.responsive {position: relative;}
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
   .distill-site-header.responsive a.nav-toggle {
     position: absolute;
     right: 0;
@@ -405,6 +473,267 @@ d-title {
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createIndex() {
+  var options = {
+    keys: [
+      "title",
+      "categories",
+      "description",
+      "contents"
+    ]
+  };
+  return new window.Fuse([],options);
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = { keys: ["title", "description", "contents"] };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+            keys: [
+              { name: 'title', weight: 20 },
+              { name: 'categories', weight: 15 },
+              { name: 'description', weight: 10 },
+              { name: 'contents', weight: 5 },
+            ],
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+            .filter(function(item) { return !!item.description; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description}
+                </div>
+                <div class="search-item-preview">
+                  <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
 <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -430,6 +759,18 @@ body {
   font-size: 15px;
 }
 
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
 .authors-affiliations .orcid-id {
   width: 16px;
   height:16px;
@@ -447,12 +788,12 @@ d-title .dt-tags {
 .dt-tags .dt-tag {
   text-decoration: none;
   display: inline-block;
-  color: rgba(0,0,0,0.67);
+  color: rgba(0,0,0,0.6);
   padding: 0em 0.4em;
   margin-right: 0.5em;
   margin-bottom: 0.4em;
   font-size: 70%;
-  border: 1px solid rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.2);
   border-radius: 3px;
   text-transform: uppercase;
   font-weight: 500;
@@ -502,6 +843,7 @@ d-article table.gt_table th {
 }
 
 d-article {
+  padding-top: 2.5rem;
   padding-bottom: 30px;
 }
 
@@ -513,137 +855,48 @@ d-article>p>img {
   width: 100%;
 }
 
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
 d-article iframe {
   border: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 2.0em;
   width: 100%;
 }
 
-figure img.external {
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  padding: 18px;
-  box-sizing: border-box;
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
-/* CSS for d-contents */
-
-.d-contents {
-  color: rgba(0,0,0,0.8);
-  font-size: 0.9em;
-  padding-bottom: 1em;
-  margin-bottom: 1em;
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: hidden;
 }
 
-@media(max-width: 1000px) {
-  .d-contents {
-    grid-column: text;
-    width: 100%;
-    justify-self: start;
-    align-self: start;
-    padding-bottom: 0.5em;
-    margin-bottom: 1em;
-    padding-left: 0.25em;
-  }
+d-article div.sourceCode {
+  background-color: white;
 }
 
-@media(min-width: 1180px) {
-  .d-contents {
-    height: 0;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    justify-self: center;
-    padding-right: 3em;
-    padding-left: 2em;
-  }
-}
-
-.d-contents nav h3 {
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.6);
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0.5em;
-}
-
-.d-contents nav a {
-  color: rgba(0, 0, 0, 0.8);
-  border-bottom: none;
-  text-decoration: none
-}
-
-.d-contents li {
-  list-style-type: none
-}
-
-.d-contents nav > ul {
-  padding-left: 0;
-}
-
-.d-contents ul {
-  padding-left: 1em
-}
-
-.d-contents nav ul li {
-  margin-bottom: 0.15em;
-}
-
-.d-contents nav a:hover {
-  text-decoration: underline solid rgba(0, 0, 0, 0.6)
-}
-
-.d-contents nav ul {
-  margin-top: 0;
-  margin-bottom: 0.25em;
-}
-
-.d-contents nav>div {
-  display: block;
-  outline: none;
-  margin-bottom: 0.5em
-}
-
-.d-contents nav>div>a {
-  font-size: 13px;
-  font-weight: 600
-}
-
-.d-contents nav>div>a {
-  font-size: 13px;
-  font-weight: 600
-}
-
-.d-contents nav>div>a:hover,
-.d-contents nav>ul>li>a:hover {
-  text-decoration: none
-}
-
-.d-article-with-toc {
-  border-top: none;
-  padding-top: 0;
-}
-
-/* Tweak code blocks (note that this CSS is repeated above in an injection
-   into the d-code shadow dom) */
-
-d-code {
-  overflow-x: auto !important;
-}
-
-pre.d-code code.d-code {
+d-article div.sourceCode pre {
   padding-left: 10px;
   font-size: 12px;
   border-left: 2px solid rgba(0,0,0,0.1);
 }
 
-pre.text-output {
-
+d-article pre {
   font-size: 12px;
   color: black;
   background: none;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  margin-top: 0;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -661,20 +914,123 @@ pre.text-output {
   hyphens: none;
 }
 
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
 @media(min-width: 768px) {
 
-d-code {
-  overflow-x: visible !important;
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
 }
 
-pre.d-code code.d-code  {
-    padding-left: 18px;
-    font-size: 14px;
-}
-pre.text-output {
+d-article div.sourceCode pre {
+  padding-left: 18px;
   font-size: 14px;
 }
+
+d-article pre {
+  font-size: 14px;
 }
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
 
 /* Figure */
 
@@ -797,6 +1153,91 @@ d-appendix .citation-appendix,
   word-wrap: break-word;
 }
 
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
 
 /* Social footer */
 
@@ -998,6 +1439,13 @@ function is_downlevel_browser() {
 // show body when load is complete
 function on_load_complete() {
 
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
   // set body to visible
   document.body.style.visibility = 'visible';
 
@@ -1078,27 +1526,6 @@ function init_distill() {
   // show d-appendix if we have appendix content
   $("d-appendix").css('display', appendix ? 'grid' : 'none');
 
-  // replace code blocks with d-code
-  $('pre>code').each(function(i, val) {
-    var code = $(this);
-    var pre = code.parent();
-    var clz = "";
-    var language = pre.attr('class');
-    if (language) {
-      // map unknown languages to "clike" (without this they just dissapear)
-      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
-                               "javascript", "js", "julia", "lua", "markdown",
-                               "markup", "mathml", "python", "svg", "xml"]) == -1)
-        language = "clike";
-      language = ' language="' + language + '"';
-      var dt_code = $('<d-code block' + language + clz + '></d-code>');
-      dt_code.text(code.text());
-      pre.replaceWith(dt_code);
-    } else {
-      code.addClass('text-output').unwrap().changeElementType('pre');
-    }
-  });
-
   // localize layout chunks to just output
   $('.layout-chunk').each(function(i, val) {
 
@@ -1106,7 +1533,7 @@ function init_distill() {
     var layout = $(this).attr('data-layout');
 
     // apply layout to markdown level block elements
-    var elements = $(this).children().not('d-code, pre.text-output, script');
+    var elements = $(this).children().not('div.sourceCode, pre, script');
     elements.each(function(i, el) {
       var layout_div = $('<div class="' + layout + '"></div>');
       if (layout_div.hasClass('shaded')) {
@@ -1123,6 +1550,13 @@ function init_distill() {
     $(this).children().unwrap();
   });
 
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
   // load distill framework
   load_distill_framework();
 
@@ -1138,9 +1572,8 @@ function init_distill() {
     if (!have_authors)
       $('d-byline').addClass('hidden');
 
-    // table of contents
-    if (have_authors) // adjust border if we are in authors
-      $('.d-contents').parent().addClass('d-article-with-toc');
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
 
     // strip links that point to #
     $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
@@ -1208,14 +1641,9 @@ function init_distill() {
       grid.children('h3:contains("Affiliations")').text('Affiliation');
     }
 
-    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
-    $('d-code').each(function(i, val) {
-      var style = document.createElement('style');
-      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
-                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
-      if (this.shadowRoot)
-        this.shadowRoot.appendChild(style);
-    });
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
 
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
@@ -1379,9 +1807,335 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+.d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+@import url('https://fonts.googleapis.com/css2?family=Cardo');
+@import url('https://fonts.googleapis.com/css2?family=Alata');
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.075em; /* 1.06rem */
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    'Alata', sans-serif;
+  --mono-font:       monospace;
+  --body-font:       'Cardo', serif;
+  --navbar-font:     'Alata', sans-serif;
+}
+
+/*-- ARTICLE METADATA --*/
+.d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       1.075em;
+  --text-color:      rgb(0, 0, 0);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       #000;
+  --text-size:        15px;
+  --hover-color:      #ff00ff;
+  --bkgd-color:       #fff;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+
+.categories li > a:hover {
+    color: #00ff00;
+    border-bottom: 1px #00ff00;
+}
+
+p a:hover  {
+    color: #00ff00;
+}
+
+/* Change appearance of headers */
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+}
+
+/* Use specific font in the body of the text */
+html, body, p {
+    font-weight: 200;
+    line-height: 1.3; 
+    font-style: normal;
+}
+
+li::marker {
+    font-weight: 700;
+    font-size: 1.125em;
+}</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .post-preview h3,
+.posts-list .description h2,
+.posts-sidebar h3 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code,
+d-article p code {
+	font-family: var(--mono-font), var(--mono-default);
+}
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+/* only text inside of <p> tags */
+d-article > p {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+	font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+	font-size: var(--aside-size, 12px);
+	color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+	font-size: var(--fig-cap-size, 13px);
+	color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+	font-size: var(--heading-size, 0.6rem);
+	color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+	font-size: var(--body-size, 0.8rem);
+	color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+	color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+	font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+	font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+	color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+	color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+	color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+
+.distill-site-header .title {
+	font-size: var(--title-size, 18px);
+	font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header {
+	font-size: var(--text-size, 15px);
+	color: var(--text-color, rgba(255, 255, 255, 0.8));
+	background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-header a:hover {
+	color: var(--hover-color, white);
+}
+
+.distill-site-footer {
+	font-size: var(--text-size, 15px);
+	color: var(--text-color, rgba(255, 255, 255, 0.8));
+	background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+	color: var(--hover-color, white);
+}</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.3/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.4/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -1414,78 +2168,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 </script>
 
-<style type="text/css">
-/* Import fonts from Google's API */
-@import url('https://fonts.googleapis.com/css2?family=Cardo');
-@import url('https://fonts.googleapis.com/css2?family=Alata');
-
-
-
-.distill-site-nav {
-    font-family: 'Alata', sans-serif;
-    color: #000;
-    background-color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.distill-site-header {
-    font-family: 'Alata', sans-serif;
-    color: #000;
-    background-color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.distill-site-nav a:hover {
-    color: #ff00ff;
-}
-
-.categories li > a:hover {
-    color: #00ff00;
-    border-bottom: 1px #00ff00;
-}
-
-p a:hover  {
-    color: #00ff00;
-}
-
-/* Change appearance of headers */
-h1, h2, h3, h4, h5 {
-    font-family: 'Alata', sans-serif;
-    font-weight: 700;
-}
-
-/* Use specific font in the body of the text */
-html, body, p {
-    
-    font-family: 'Cardo', serif;
-    font-weight: 200;
-    line-height: 1.3; 
-    font-size: 1.075em;
-    font-style: normal;
-    
-}
-
-.posts-list .description p {
-    font-family: 'Cardo', serif !important;
-    color: gray !important;
-}
-
-.posts-list .description h2 {
-    font-family: 'Alata', sans-serif !important;
-}
-
-d-appendix {
-    color: rgb(0, 0, 0) !important;
-}
-
-li::marker {
-    font-weight: 700;
-    font-size: 1.125em;
-}
-
-</style>
 <!--/radix_placeholder_site_in_header-->
 
 
@@ -1496,7 +2178,7 @@ li::marker {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"The Roots of Quotation","description":"In this post I use Lisp as a prop to have the quoting conversation from the start. It's a deep dive that will hopefully arrive at a deep understanding.","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2018-07-26T00:00:00.000+10:00","citationText":"McBain, 2018"}
+{"title":"The Roots of Quotation","description":"In this post I use Lisp as a prop to have the quoting conversation from the start. It's a deep dive that will hopefully arrive at a deep understanding.","authors":[{"author":"Miles McBain","authorURL":"https://milesmcbain.xyz","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2018-07-26T00:00:00.000-04:00","citationText":"McBain, 2018"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1508,6 +2190,7 @@ li::marker {
 <img src="../../images/i_like_turtles_bis.png" alt="Logo"/>
 </a>
 <a href="../../index.html" class="title">Before I Sleep</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
 <a href="../../index.html">Home</a>
@@ -1528,6 +2211,12 @@ li::marker {
 
 <div class="d-title">
 <h1>The Roots of Quotation</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:rstats" class="dt-tag">rstats</a>
+  <a href="../../index.html#category:lisp" class="dt-tag">lisp</a>
+</div>
+<!--/radix_placeholder_categories-->
 <p><p>In this post I use Lisp as a prop to have the quoting conversation from the start. It’s a deep dive that will hopefully arrive at a deep understanding.</p></p>
 </div>
 
@@ -1560,39 +2249,33 @@ li::marker {
 <p>Now I’m going to present a scenario that will give you some insight into the importance of <code>quote</code> in making evaluation work, but before I can do that I’ll need to give you a brief primer of Lisp functions and evaluation rules.</p>
 <h2 id="lisp-in-a-paragraph">Lisp in a paragraph</h2>
 <p>In Lisp everything is either an atom or a list. atoms are literals like <code>3.14</code>, <code>"Hello"</code>, or names of variables or functions like: <code>myvar</code>, <code>list</code>, <code>quote</code>. Lists are denoted with <code>()</code> and contain atoms and or other lists. When writing Lisp programs you write lists, each of which is interpreted as a function call unless otherwise instructed<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. In a function call the first list element is a name identifying the function and the following elements become its arguments. To make that concrete, this R expression:</p>
-<pre class="r"><code>
-list(1, 2, list(3, 4) )
-
-#&gt; [[1]]
-# [1] 1
-#
-# [[2]]
-# [1] 2
-#
-# [[3]]
-# [[3]][[1]]
-# [1] 3
-#
-# [[3]][[2]]
-# [1] 4
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="kw">list</span>(<span class="dv">3</span>, <span class="dv">4</span>) )</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># [1] 1</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># [[2]]</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># [1] 2</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># [[3]]</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># [[3]][[1]]</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># [1] 3</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># [[3]][[2]]</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># [1] 4</span></span></code></pre></div>
 <p>has this lisp equivalent:</p>
-<pre class="lisp"><code>
-(list 1 2 (list 3 4))
-
-; =&gt; (1 2 (3 4))</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb2-1"><a href="#cb2-1"></a>(<span class="kw">list</span> <span class="dv">1</span> <span class="dv">2</span> (<span class="kw">list</span> <span class="dv">3</span> <span class="dv">4</span>))</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">; =&gt; (1 2 (3 4))</span></span></code></pre></div>
 <h2 id="the-set-up">The set up</h2>
 <p>Let me now introduce you to a Lisp function called <code>set</code>. It has a role as an assignment function. Given that, you might try something like:</p>
-<pre class="lisp"><code>
-(set myvar &quot;myvalue&quot;)</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb3-1"><a href="#cb3-1"></a>(<span class="kw">set</span> myvar <span class="st">&quot;myvalue&quot;</span>)</span></code></pre></div>
 <p>But that’ll get you an error: <code>The variable MYVAR is unbound</code>. So the program tried to evaluate <code>myvar</code> and found it was not defined - we knew that - we were just trying to define it!</p>
 <p>So okay let’s go out on a limb:</p>
-<pre class="lisp"><code>
-(set &quot;myvar&quot; &quot;myvalue&quot;)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb4-1"><a href="#cb4-1"></a>(<span class="kw">set</span> <span class="st">&quot;myvar&quot;</span> <span class="st">&quot;myvalue&quot;</span>)</span></code></pre></div>
 <p>Error again: <code>The value "myvar" is not of type SYMBOL when binding SYMBOL</code></p>
 <p>Yikes. So it won’t take a string as a variable name because that’s not a ‘symbol’, but if we give it plain text it will try to evaluate it and find it unbound. You may have guessed where this is going. We need to tell the program: Don’t evaluate <code>myvar</code>, it’s not code, it’s data for the <code>set</code> operation. We need to use <code>quote</code>:</p>
-<pre class="lisp"><code>
-(set (quote myvar) &quot;myvalue&quot;)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb5-1"><a href="#cb5-1"></a>(<span class="kw">set</span> (<span class="kw">quote</span> myvar) <span class="st">&quot;myvalue&quot;</span>)</span></code></pre></div>
 <p>There are several shorthands available to make this less cumbersome. In Lisp <code>(quote myvar)</code> can also be written as <code>'myvar</code>, and furthermore, these are all equivalent:</p>
 <ul>
 <li><code>(set (quote myvar) "myvalue")</code></li>
@@ -1602,79 +2285,74 @@ list(1, 2, list(3, 4) )
 <p>It may not surprise you to learn <code>setq</code> (a quoting set) is a standard way to perform assignment in Lisp. In fact it’s verging on impossible to do something resembling traditional assignment in Lisp without a quoting function being involved somehow.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <h2 id="getting-us-on-a-technicality">Getting us on a technicality</h2>
 <p>An interesting discussion point arises from the previous example: <code>quote</code> seems to return the text we supply as a ‘symbol’ since that is the input expected by <code>set</code>. How can we reconcile that with <a href="https://www.rdocumentation.org/packages/base/versions/3.5.1/topics/substitute">descriptions of <code>quote</code></a> that say it ‘simply’ returns its argument unevaluated? Consider these R and Lisp expressions:</p>
-<pre class="r"><code>
-## R
-x &lt;- quote(y)
-class(x)
-# [1] &quot;name&quot;
-
-;; Lisp
-(setq x (quote y))
-(type-of x)
-; =&gt; SYMBOL</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## R</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>x &lt;-<span class="st"> </span><span class="kw">quote</span>(y)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">class</span>(x)</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># [1] &quot;name&quot;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>;; Lisp</span>
+<span id="cb6-7"><a href="#cb6-7"></a>(setq <span class="kw">x</span> (quote y))</span>
+<span id="cb6-8"><a href="#cb6-8"></a>(type<span class="op">-</span>of x)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>; =<span class="er">&gt;</span><span class="st"> </span>SYMBOL</span></code></pre></div>
 <p>Come on R, the thing I passed you didn’t have a class. You definitely evaluated <em>something</em>, and Lisp you’re no better… can unevaluated text have a data type?</p>
 <p>It turns out that these type of definitions of <code>quote</code> are correct only if we apply a narrow and technical definition of <em>evaluate</em>. The relevant background to comprehend this definition is well articulated by Peter Seibel in <a href="http://www.gigamonkeys.com/book/syntax-and-semantics.html">Chapter 4 of Practical Common Lisp</a>. Here’s a crude summary:</p>
 <p>Compilers and interpreters are most often opaque to programmers. It is usual though that they are made up of subprograms. There is usually a distinct program with the responsibility of parsing the text we type and creating a structure of machine-readable of tokens or symbols. Then there is usually a distinct program responsible for mapping parts of this structure to low level code to be executed on the processor. This last program - the one in control of execution - is considered to be the ‘evaluator’ of the code.</p>
 <p>So what this means is that code can be transformed and structured by sub-programs<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> without technically being evaluated until it is processed by the ‘evaluator’. ==In the Lisp family of programming languages it is possible to instruct the evaluator to leave off, and instead of an evaluation result, the machine-readable symbolic structure that would have been ‘evaluated’ is returned. <em>This</em> is what <code>quote</code> does.==</p>
 <h2 id="code-as-data">Code as Data</h2>
 <p>If you have investigated much of the tidy eval documentation you may know the machine-readable symbolic structure returned by <code>quote</code> as an <em>Abstract Syntax Tree</em>. In Lisp it’s just regular nested lists. In the previous section, the R class <code>"name"</code> and Lisp type <code>SYMBOL</code> are atomic elements of these structures respectively. Quoting more complex code will yield different structures. Since Lisp uses plain lists for data and code, it is intuitive that syntactical structures can be manipulated using regular list mechanisms - somewhat surprisingly this holds for R as well:</p>
-<pre class="r"><code>
-## R
-y &lt;- quote(abs(x - 1))
-class(y)
-# [1] &quot;call&quot;
-
-y[1]
-# abs()
-
-y[2]
-#(x - 1)()
-
-y[[1]] &lt;- quote(sin)
-y
-# sin(x - 1)
-
-;; Lisp
-(setq y (quote (abs (- x 1))))
-(type-of y)
-; =&gt; CONS
-
-(car y)
-; =&gt; ABS
-
-(cdr y)
-; =&gt; ((- X 1))
-
-(setf (car y) (quote sin))
-
-(print y)
-; =&gt; (sin (- x 1))</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## R</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>y &lt;-<span class="st"> </span><span class="kw">quote</span>(<span class="kw">abs</span>(x <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">class</span>(y)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># [1] &quot;call&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>y[<span class="dv">1</span>]</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># abs()</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a></span>
+<span id="cb7-9"><a href="#cb7-9"></a>y[<span class="dv">2</span>]</span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#(x - 1)()</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a>y[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="kw">quote</span>(sin)</span>
+<span id="cb7-13"><a href="#cb7-13"></a>y</span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co"># sin(x - 1)</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a>;; Lisp</span>
+<span id="cb7-17"><a href="#cb7-17"></a>(setq <span class="kw">y</span> (<span class="kw">quote</span> (<span class="kw">abs</span> (<span class="op">-</span><span class="st"> </span>x <span class="dv">1</span>))))</span>
+<span id="cb7-18"><a href="#cb7-18"></a>(type<span class="op">-</span>of y)</span>
+<span id="cb7-19"><a href="#cb7-19"></a>; =<span class="er">&gt;</span><span class="st"> </span>CONS</span>
+<span id="cb7-20"><a href="#cb7-20"></a></span>
+<span id="cb7-21"><a href="#cb7-21"></a>(car y)</span>
+<span id="cb7-22"><a href="#cb7-22"></a>; =<span class="er">&gt;</span><span class="st"> </span>ABS</span>
+<span id="cb7-23"><a href="#cb7-23"></a></span>
+<span id="cb7-24"><a href="#cb7-24"></a>(cdr y)</span>
+<span id="cb7-25"><a href="#cb7-25"></a>; =<span class="er">&gt;</span><span class="st"> </span>((<span class="op">-</span><span class="st"> </span>X <span class="dv">1</span>))</span>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a>(<span class="kw">setf</span> (car y) (quote sin))</span>
+<span id="cb7-28"><a href="#cb7-28"></a></span>
+<span id="cb7-29"><a href="#cb7-29"></a>(print y)</span>
+<span id="cb7-30"><a href="#cb7-30"></a>; =<span class="er">&gt;</span><span class="st"> </span>(<span class="kw">sin</span> (<span class="op">-</span><span class="st"> </span>x <span class="dv">1</span>))</span></code></pre></div>
 <p>Lisp notes: <code>car</code> can be thought of as <code>y[[1]]</code> and <code>cdr</code> can be thought of as <code>y[-1]</code>. <code>setf</code> is a general version of <code>setq</code> that can handle the equivalent of <code>[&lt;-</code> in R.</p>
 <h2 id="data-to-code">Data to Code</h2>
 <p>The last piece of the puzzle is taking the data that we have manipulated and evaluating it as code once again. Then we’re metaprogramming. Continuing from above, we do this in both Lisp and R with <code>eval</code>, after setting a value for <code>x</code>.</p>
-<pre class="r"><code>
-## R
-x &lt;- 1
-eval(y)
-# [1] 0
-
-;; Lisp
-(setq x 1)
-(eval y)
-; =&gt; 0.0</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## R</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">eval</span>(y)</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># [1] 0</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>;; Lisp</span>
+<span id="cb8-7"><a href="#cb8-7"></a>(setq x <span class="dv">1</span>)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>(eval y)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>; =<span class="er">&gt;</span><span class="st"> </span><span class="fl">0.0</span></span></code></pre></div>
 <h2 id="quote-derivatives">Quote derivatives</h2>
 <p>With our understanding of <code>quote</code> firming up it is natural to see if we can use it to understand other related concepts like <em>unquoting</em> and <em>quasiquotation</em>. Applying the natural interpretation of the prefixes ‘un’ and ‘quasi’ we might guess: * unquoting is the reverse of quoting? Machine-readable back to human readable? Can it be be ‘evaluation’? We already have a word for that. * quasiquotation is something that is almost but not quite quotation?</p>
 <p>And we’d be wrong on two counts. But it’s not our fault - these are terms are straight up jargon. The concepts they describe are simple to explain and motivate though. A last Lisp example should do the trick:</p>
 <p>Let’s say we are operating in a scenario where we are trying to compose a list to eventually become function call that takes a function as an argument. We have to build two lists, quoting most of the arguments, except the last one where we want the result of the code in that position, <code>(+ 1 1)</code>, as the argument.</p>
 <p>We are actually quoting more often than we are evaluating, e.g:</p>
-<pre class="lisp"><code>
-(list &#39;myfun &#39;arg1 (list &#39;myfun2 &#39;arg2 (+ 1 1)))
-; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb9-1"><a href="#cb9-1"></a>(<span class="kw">list</span> &#39;myfun &#39;arg1 (<span class="kw">list</span> &#39;myfun2 &#39;arg2 (<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)))</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co">; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</span></span></code></pre></div>
 <p>Ugh, very noisy. It would be convenient syntactically if we could switch into a complimentary mode where instead of telling Lisp what we want to quote, we just tell it what needs to be evaluated. Quoting becomes the standard procedure.</p>
 <p>==This anti-quoting mode is what was named ‘quasiquotation’==. In Lisp you switch it on using the ‘`’ operator, and you signal things needing evaluation using a ‘,’. So when ‘quasiquoting’ the above function would be:</p>
-<pre class="lisp"><code>
-`(myfun arg1 (myfun2 arg2 ,(+ 1 1)))
-; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode lisp"><code class="sourceCode commonlisp"><span id="cb10-1"><a href="#cb10-1"></a>`(myfun arg1 (myfun2 arg2 ,(<span class="op">+</span> <span class="dv">1</span> <span class="dv">1</span>)))</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">; =&gt; (MYFUN ARG1 (MYFUN2 ARG2 2))</span></span></code></pre></div>
 <p>Signaling things need evaluating in the midst of quasiquotation is what has been called unquoting. Notice the effect of unquoting is that the result of the evaluation, <code>'2'</code>, becomes data in the list that is returned.</p>
 <p>In simple cases like above unquote is effectively saying ‘evaluate’. But it does make sense to have a different term, since it is possible to have nested quasiquotation and unquote is not equivalent to evaluate in that context - it’s an evaluation somewhere down the line.</p>
 <p>FYI you’ve now seen the Lisp ‘backquote macro’ referred to by R’s <code>bquote</code> that I showed the help for in the introduction.</p>
@@ -1684,6 +2362,7 @@ eval(y)
 <p>The big light bulb arising from this for me was when I gained appreciation for <code>quote</code> as a code -&gt; data transformation. I think the main reason I found studying quoting in Lisp revelatory in this regard is that the mechanics are <strong>a)</strong> simple and <strong>b)</strong> predictable. Code and data <a href="https://twitter.com/_lionelhenry/status/1020224078592999424">are both plain lists</a>. These properties make Lisp a useful sandbox for building confidence with metraprogramming ideas.</p>
 <p>In R you can really only have <strong>a)</strong> OR <strong>b)</strong> but not both. Base R quoting and Non-Standard evaluation functions are few and seem simple on the surface but are dogged by behaviour that changes with context (e.g. <code>substitute</code>) or are less general/robust than we might like (e.g. <code>bquote</code>).</p>
 <p>Tidy eval deserves our appreciation for doing something similar to what <code>purrr</code> did for functional programming: it’s rounding off the jagged edges in the API and making metaprogramming in R much more stable and predictable. The trouble, as <a href="https://milesmcbain.xyz/solving-the-challenge-of-tidyeval/">I have discussed previously</a>, is this has come at the cost of simplicity. There’s much work to be done to break that down and this post has just focused on one foundational aspect.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
